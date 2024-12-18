@@ -21,4 +21,7 @@
 
 - Nav2 msgs:
   - sudo apt-get install ros-humble-nav2-msgs
+- Rosdep
+  - colcon build --symlink-install --install-base ./install
+
 
