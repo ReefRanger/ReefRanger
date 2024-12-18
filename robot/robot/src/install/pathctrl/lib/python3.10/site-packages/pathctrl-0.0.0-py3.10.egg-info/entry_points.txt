@@ -1,0 +1,2 @@
+[console_scripts]
+pathctrl = pathctrl.pathctrl:main

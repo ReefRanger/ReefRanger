@@ -1,0 +1,34 @@
+[1.226s] Invoking command in '/home/reefranger/Desktop/ReefRanger/robot/robot/src/pathctrl': PYTHONPATH=/home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/pathctrl build --build-base /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build install --record /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/install.log --single-version-externally-managed install_data
+[1.433s] /home/reefranger/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:261: UserWarning: Unknown distribution option: 'tests_require'
+[1.433s]   warnings.warn(msg)
+[1.596s] running egg_info
+[1.624s] writing ../build/pathctrl/pathctrl.egg-info/PKG-INFO
+[1.625s] writing dependency_links to ../build/pathctrl/pathctrl.egg-info/dependency_links.txt
+[1.625s] writing entry points to ../build/pathctrl/pathctrl.egg-info/entry_points.txt
+[1.625s] writing requirements to ../build/pathctrl/pathctrl.egg-info/requires.txt
+[1.625s] writing top-level names to ../build/pathctrl/pathctrl.egg-info/top_level.txt
+[1.680s] reading manifest file '../build/pathctrl/pathctrl.egg-info/SOURCES.txt'
+[1.681s] adding license file 'LICENSE'
+[1.682s] writing manifest file '../build/pathctrl/pathctrl.egg-info/SOURCES.txt'
+[1.682s] running build
+[1.682s] running build_py
+[1.683s] copying pathctrl/pathctrl_2.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl
+[1.683s] copying pathctrl/pathctrl.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl
+[1.683s] copying pathctrl/pathctrl_subscriper.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl
+[1.683s] copying pathctrl/pathctrl3.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl
+[1.683s] copying pathctrl/pathctrl_1.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl
+[1.684s] copying pathctrl/__init__.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl
+[1.684s] running install
+[1.689s] running install_lib
+[1.717s] copying /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build/lib/pathctrl/pathctrl.py -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/python3.10/site-packages/pathctrl
+[1.718s] byte-compiling /home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/python3.10/site-packages/pathctrl/pathctrl.py to pathctrl.cpython-310.pyc
+[1.719s] running install_data
+[1.720s] copying resource/pathctrl -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/share/ament_index/resource_index/packages
+[1.720s] copying package.xml -> /home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/share/pathctrl
+[1.720s] running install_egg_info
+[1.750s] removing '/home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/python3.10/site-packages/pathctrl-0.0.0-py3.10.egg-info' (and everything under it)
+[1.750s] Copying ../build/pathctrl/pathctrl.egg-info to /home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/python3.10/site-packages/pathctrl-0.0.0-py3.10.egg-info
+[1.751s] running install_scripts
+[1.978s] Installing pathctrl script to /home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/pathctrl
+[1.978s] writing list of installed files to '/home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/install.log'
+[2.013s] Invoked command in '/home/reefranger/Desktop/ReefRanger/robot/robot/src/pathctrl' returned '0': PYTHONPATH=/home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/reefranger/Desktop/ReefRanger/robot/robot/src/install/pathctrl/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../build/pathctrl build --build-base /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/build install --record /home/reefranger/Desktop/ReefRanger/robot/robot/src/build/pathctrl/install.log --single-version-externally-managed install_data
