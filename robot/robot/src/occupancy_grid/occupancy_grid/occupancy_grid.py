@@ -1,5 +1,10 @@
 import rclpy
 from rclpy.node import Node
+from rclpy.action import ActionServer
+
+from rclpy.action import ActionClient
+
+from slam_interface.action import ActivateSlam
 from sensor_msgs.msg import PointCloud2
 from nav_msgs.msg import OccupancyGrid
 from sensor_msgs_py.point_cloud2 import read_points
@@ -22,12 +27,12 @@ class MapGenerator(Node):
             10
         )
 
-        self.reset_subscriber = self.create_subscription(
-            Empty,
-            '/reset_cloudpoints',
-            self.reset_points_callback,
-            10
-        )
+        # self.reset_subscriber = self.create_subscription(
+        #     Empty,
+        #     '/reset_cloudpoints',
+        #     self.reset_points_callback,
+        #     10
+        # )
 
         # Map publisher
         self.map_publisher = self.create_publisher(
@@ -42,11 +47,31 @@ class MapGenerator(Node):
             10
         )
 
+        # Action server
+        self.action_server = ActionServer(
+            self, ActivateSlam, 'activateslam', self.handle_process_grid)
+
         # Configuration
         self.map_resolution = 0.01  # Grid resolution in meters
         self.points = []  # List to store all point cloud data
         self.start_time = time.time()  # Record start time
         self.map_generated = True  # Flag to ensure only one map is published
+
+    def handle_process_grid(self, goal_handle):
+        """Handles the action to reset and process the grid."""
+        self.get_logger().info("Received process grid action.")
+        self.reset_points_callback(None)  # Reset points
+        self.get_logger().info("Reset complete. Collecting data...")
+
+        # Simulate processing by waiting for point cloud data
+        self.map_generated = False
+        while not self.map_generated:
+            rclpy.spin_once(self)
+
+        self.get_logger().info("Grid processing complete.")
+        goal_handle.succeed()
+
+        return ActivateSlam.Result(success=True, message="Grid processed successfully.")
 
     def reset_points_callback(self, msg):
         """Callback to reset the collected points."""

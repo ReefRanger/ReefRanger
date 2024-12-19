@@ -5,6 +5,7 @@ from rclpy.node import Node
 from move_interface.action import Move
 from gototable_interface.action import GoTable
 from godown_interface.action import Godownint
+from slam_interface.action import ActivateSlam
 
 
 class FibonacciActionClient(Node):
@@ -13,7 +14,9 @@ class FibonacciActionClient(Node):
         super().__init__('fibonacci_action_client')
         self._action_client = ActionClient(self, Move, 'navigatetable')
         self._centertable_client = ActionClient(self, GoTable, 'gototable')
-        self._godown_client = ActionClient(self, Godownint, 'godownserver')
+        #self._godown_client = ActionClient(self, Godownint, 'godownserver')
+        self._slam_client = ActionClient(self, ActivateSlam, 'activateslam')
+
 
         self.timer = self.create_timer(2.0, self.timer_callback)
 
@@ -37,9 +40,40 @@ class FibonacciActionClient(Node):
                 self.command = 'wait for center table'
                 self.godown()
             self.get_logger().info(self.state+' '+self.command)
-        elif self.state == 'GoDownTable':
-            if self.command=='godowntable':
-                self.get_logger().info('go down for the table')
+
+        # elif self.state == 'GoDownTable':
+        #     if self.command=='godowntable':
+        #         self.get_logger().info('go down for the table')
+        
+        elif self.state == 'Slam':
+            if self.command == 'ActivateSlam':
+                self.get_logger().info('starting to feed')
+                self.slam()
+
+    def slam(self):
+        goal_msga = ActivateSlam.Goal()
+        self._slam_client.wait_for_server()
+        goal_msga.activate = True
+        self._send_goal_future = self._slam_client.send_goal_async(goal_msga)
+        self._send_goal_future.add_done_callback(self.slam_init_callback)
+
+    def slam_callback(self, future):
+        result = future.result().result
+        self.get_logger().info('Result: {0}'.format(result.success))
+        self.state = 'Finished'  # Initial state
+        self.command = 'aaa'
+        self.get_logger().info('slam started')
+    
+    def slam_init_callback(self, future):
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().info('go target rejected :(')
+            return
+
+        self.get_logger().info('started go target')
+
+        self._get_result_future = goal_handle.get_result_async()
+        self._get_result_future.add_done_callback(self.slam_callback)
 
     
 

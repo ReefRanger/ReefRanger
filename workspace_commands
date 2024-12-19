@@ -33,3 +33,4 @@ from godown_interface.action import Godownint
 ros2 action send_goal navigatetable move_interface/action/Move "{targetx: 1, targety: 1}"
 ros2 action send_goal gototable gototable_interface/action/GoTable "{targetx: 1, targety: 1}"
 ros2 action send_goal godownserver godown_interface/action/Godownint "{targetx: 1, targety: 1}"
+ros2 action send_goal activateslam slam_interface/action/ActivateSlam "{activate: True}"
