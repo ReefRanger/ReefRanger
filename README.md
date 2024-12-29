@@ -6,11 +6,21 @@
 - Python version 3.10.12
 - Pip version 22.0.2
 - Setuptools-75.6.0 
+  - setuptool versin downgrade: python3 -m pip install setuptools==58.0.4
 - Wheel 0.45.1
 - Numpy 2.2.0
 - Pandas 2.2.3
+- Pangolin: 
+  sudo apt update
+  sudo apt install cmake g++ libegl1-mesa-dev libwayland-dev libxkbcommon-dev wayland-protocols
+  sudo apt install libepoxy-dev
+  cd ~/Pangolin/build
+  rm -rf *
+  cmake ..
+  make -j$(nproc)
+  sudo make install
 - Large File Storage:
-  - Sudo apt install git-lfs
+  - sudo apt install git-lfs
   - Go into folder with src-> git lfs install -> git lfs pull
 - Gazebo Harmonic:
   - wget https://gazebosim.org/repos/gz-archive-keyring.gpg -O - | sudo apt-key add –

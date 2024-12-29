@@ -1,6 +1,8 @@
 #First time installing
+sudo rosdep init
 rosdep update
 rosdep install -i --from-path src --rosdistro humble -y
+rosdep install --from-paths src --ignore-src -r -y
 
 #Build and source
 cd /home/reefranger/Desktop/ReefRanger/robot/robot
