@@ -9,7 +9,15 @@
   - setuptool versin downgrade: python3 -m pip install setuptools==58.0.4
 - Wheel 0.45.1
 - Numpy 2.2.0
+  has to be lower than 2: pip install numpy<2
 - Pandas 2.2.3
+- pynput
+  pip install pynput
+- ultralytics
+  pip install ultralytics
+- Foxglove
+  https://foxglove.dev/download
+  sudo apt install ros-$ROS_DISTRO-foxglove-bridge
 - Pangolin: 
   sudo apt update
   sudo apt install cmake g++ libegl1-mesa-dev libwayland-dev libxkbcommon-dev wayland-protocols
@@ -19,6 +27,10 @@
   cmake ..
   make -j$(nproc)
   sudo make install
+-  xarco
+  sudo apt update
+  sudo apt install ros-humble-xacro
+
 - Large File Storage:
   - sudo apt install git-lfs
   - Go into folder with src-> git lfs install -> git lfs pull
