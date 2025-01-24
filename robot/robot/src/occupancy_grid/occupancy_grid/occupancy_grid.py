@@ -19,6 +19,8 @@ class MapGenerator(Node):
     def __init__(self):
         super().__init__('map_generator')
 
+        self.navigation_complete = False
+
         # Subscribers
         self.pointcloud_subscriber = self.create_subscription(
             PointCloud2,
@@ -47,6 +49,10 @@ class MapGenerator(Node):
             10
         )
 
+        # Add subscriber for navigation completion
+        self.navigation_complete_subscriber = self.create_subscription(
+            Empty, '/navigation_complete', self.navigation_complete_callback, 10)
+
         # Action server
         self.action_server = ActionServer(
             self, ActivateSlam, 'activateslam', self.handle_process_grid)
@@ -56,6 +62,11 @@ class MapGenerator(Node):
         self.points = []  # List to store all point cloud data
         self.start_time = time.time()  # Record start time
         self.map_generated = True  # Flag to ensure only one map is published
+
+    def navigation_complete_callback(self, msg):
+        """Callback triggered when navigation is complete."""
+        self.get_logger().info("Received navigation complete signal.")
+        self.navigation_complete = True
 
     def handle_process_grid(self, goal_handle):
         """Handles the action to reset and process the grid."""
@@ -69,9 +80,16 @@ class MapGenerator(Node):
             rclpy.spin_once(self)
 
         self.get_logger().info("Grid processing complete.")
+
+        # Wait for navigation to complete
+        while not self.navigation_complete:
+            rclpy.spin_once(self)
+
+        self.get_logger().info("Navigation complete.")
+
         goal_handle.succeed()
 
-        return ActivateSlam.Result(success=True, message="Grid processed successfully.")
+        return ActivateSlam.Result(success=True)
 
     def reset_points_callback(self, msg):
         """Callback to reset the collected points."""

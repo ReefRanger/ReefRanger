@@ -4,6 +4,7 @@ from geometry_msgs.msg import PoseStamped
 from nav2_msgs.action import NavigateToPose
 from rclpy.action import ActionClient
 from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Empty
 
 
 from nav_msgs.msg import OccupancyGrid
@@ -14,6 +15,8 @@ class PathNavigator(Node):
     def __init__(self):
         super().__init__('path_navigator')
         self.action_client = ActionClient(self, NavigateToPose, 'navigate_to_pose')
+        self.completion_publisher = self.create_publisher(Empty, '/navigation_complete', 10)
+        
         self.path = []  # List of grid cells (row, col)
         self.resolution = 0
         self.origin = (0,0)
@@ -139,6 +142,8 @@ class PathNavigator(Node):
                 self.get_logger().info("next grid point reached, now feeding")
 
             time.sleep(0.1)  # Pause briefly before sending the next goal
+        self.get_logger().info("All waypoints reached. Publishing completion signal.")
+        self.completion_publisher.publish(Empty())
 
 
 def main(args=None):

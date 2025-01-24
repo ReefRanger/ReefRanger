@@ -54,15 +54,15 @@ def generate_launch_description():
         ),
 
         
-        # Foxglove Bridge Launch with specified port
-        ExecuteProcess(
-            cmd=['ros2', 'launch', 'foxglove_bridge', 'foxglove_bridge_launch.xml', 'port:=8765'],
-        ),
+        # # Foxglove Bridge Launch with specified port
+        # ExecuteProcess(
+        #     cmd=['ros2', 'launch', 'foxglove_bridge', 'foxglove_bridge_launch.xml', 'port:=8765'],
+        # ),
         
-        # Foxglove Studio application
-        ExecuteProcess(
-            cmd=["foxglove-studio"]
-        ),
+        # # Foxglove Studio application
+        # ExecuteProcess(
+        #     cmd=["foxglove-studio"]
+        # ),
         
                
 

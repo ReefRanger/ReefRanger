@@ -38,7 +38,7 @@ class FibonacciActionClient(Node):
             if self.command=='centertable':
                 self.get_logger().info('table gets centeres')
                 self.command = 'wait for center table'
-                self.godown()
+                #self.godown()
             self.get_logger().info(self.state+' '+self.command)
 
         # elif self.state == 'GoDownTable':
@@ -78,31 +78,31 @@ class FibonacciActionClient(Node):
     
 
 
-    def godown(self):
-        goal_msga = Godownint.Goal()
-        goal_msga.targetx = 1.0
-        goal_msga.targety = 0.0
-        self._godown_client.wait_for_server()
-        self._send_goal_future = self._godown_client.send_goal_async(goal_msga)
-        self._send_goal_future.add_done_callback(self.godown_init_callback)
+    # def godown(self):
+    #     goal_msga = Godownint.Goal()
+    #     goal_msga.targetx = 1.0
+    #     goal_msga.targety = 0.0
+    #     self._godown_client.wait_for_server()
+    #     self._send_goal_future = self._godown_client.send_goal_async(goal_msga)
+    #     self._send_goal_future.add_done_callback(self.godown_init_callback)
 
-    def godown_callback(self, future):
-        result = future.result().result
-        self.get_logger().info('Result: {0}'.format(result.success))
-        self.state = 'Finished'  # Initial state
-        self.command = 'aaa'
-        self.get_logger().info('Completed Task Go Down')
+    # def godown_callback(self, future):
+    #     result = future.result().result
+    #     self.get_logger().info('Result: {0}'.format(result.success))
+    #     self.state = 'Finished'  # Initial state
+    #     self.command = 'aaa'
+    #     self.get_logger().info('Completed Task Go Down')
 
-    def godown_init_callback(self, future):
-        goal_handle = future.result()
-        if not goal_handle.accepted:
-            self.get_logger().info('go target rejected :(')
-            return
+    # def godown_init_callback(self, future):
+    #     goal_handle = future.result()
+    #     if not goal_handle.accepted:
+    #         self.get_logger().info('go target rejected :(')
+    #         return
 
-        self.get_logger().info('started go target')
+    #     self.get_logger().info('started go target')
 
-        self._get_result_future = goal_handle.get_result_async()
-        self._get_result_future.add_done_callback(self.godown_callback)
+    #     self._get_result_future = goal_handle.get_result_async()
+    #     self._get_result_future.add_done_callback(self.godown_callback)
 
 
 

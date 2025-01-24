@@ -26,7 +26,7 @@ class PathPublisher(Node):
 
         # Print the x, y, z components of the pose
         pose = msg.poses[6].position
-        self.get_logger().info(f'Pose x: {pose.x}, y: {pose.y}, z: {pose.z}')
+        #self.get_logger().info(f'Pose x: {pose.x}, y: {pose.y}, z: {pose.z}')
 
         # Add the pose to the path
         self.path.poses.append(pose_stamped)
@@ -35,7 +35,7 @@ class PathPublisher(Node):
         self.path.header.stamp = self.get_clock().now().to_msg()
         self.path.header.frame_id = "world"
         self.path_publisher.publish(self.path)
-        self.get_logger().info(f'Updated path with {len(msg.poses)} poses')
+        #self.get_logger().info(f'Updated path with {len(msg.poses)} poses')
 
 def main():
     rclpy.init()
